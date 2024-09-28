@@ -1,11 +1,8 @@
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/shuriken.svg';
 import ApiStatus from '../../components/ui/ApiStatus';
 import DiamondWidget from '../../components/ui/DiamondWidget';
-import { useState } from 'react';
 
 function Game() {
-  const [diamonds, setDiamonds] = useState(1000);
-
   return (
     <div className="App">
       <header className="App-header">

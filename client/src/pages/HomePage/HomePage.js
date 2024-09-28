@@ -1,6 +1,5 @@
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/shuriken.svg';
 import ApiStatus from '../../components/ui/ApiStatus';
-import CoolButton from '../../components/ui/CoolButton';
 import { useState } from 'react';
 
 function HomePage() {
@@ -15,10 +14,8 @@ function HomePage() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Adventure game
         </p>
-        <CoolButton count={count} onClick={handleClick} />
-        <CoolButton count={count} onClick={handleClick} />
         <ApiStatus />
           <a
             className="App-link"
