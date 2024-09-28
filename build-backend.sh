@@ -1,0 +1,1 @@
+docker build -f ./backend/Dockerfile.dev -t random_app-backend .

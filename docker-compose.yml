@@ -1,0 +1,38 @@
+services:
+  client:
+    container_name: random-client
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/:/app
+      - /app/node_modules
+    environment:
+      - ENV_VAR:lol
+  static-server:
+    container_name: random-static-server
+    build:
+      context: .
+      dockerfile: ./static-server/Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client/build/:/frontend-static
+      - ./static-server/:/app
+      - /app/node_modules
+    environment:
+      - ENV_VAR:lol
+  backend:
+    container_name: random-backend
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/:/app
+      - /app/node_modules
+    environment:
+      - ENV_VAR:lol

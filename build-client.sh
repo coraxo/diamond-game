@@ -1,0 +1,1 @@
+docker build -f ./client/Dockerfile.dev -t random_app-client .
