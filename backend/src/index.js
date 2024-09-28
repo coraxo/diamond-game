@@ -7,13 +7,15 @@ const gameRoutes = require('./routes/game.js');
 
 const app = express();
 
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+}));
+
+app.use(express.json());
+
 app.use('/api', statusRoutes);
 app.use('/api', gameRoutes);
-app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200,
-}));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

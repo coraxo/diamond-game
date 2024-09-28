@@ -17,11 +17,11 @@ function Game() {
         <ApiStatus />
           <a
             className="App-link"
-            href="/game"
+            href="/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Play game
+            Exit game
           </a>
       </header>
     </div>
