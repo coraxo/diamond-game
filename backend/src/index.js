@@ -2,9 +2,13 @@
 
 const express = require('express');
 const cors = require('cors');
+const statusRoutes = require('./routes/status.js');
+const gameRoutes = require('./routes/game.js');
 
 const app = express();
 
+app.use('/api', statusRoutes);
+app.use('/api', gameRoutes);
 app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -15,12 +19,4 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
     console.log(`Press Ctrl+C to quit.`);
-});
-
-app.get('/status', (request, response) => {
-    const status = {
-        "status": "Running"
-    };
-
-    response.send(status);
 });

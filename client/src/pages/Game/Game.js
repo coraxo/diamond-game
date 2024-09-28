@@ -1,24 +1,19 @@
 import logo from '../../assets/images/logo.svg';
 import ApiStatus from '../../components/ui/ApiStatus';
-import CoolButton from '../../components/ui/CoolButton';
+import DiamondWidget from '../../components/ui/DiamondWidget';
 import { useState } from 'react';
 
-function HomePage() {
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount(count + 1);
-  }
+function Game() {
+  const [diamonds, setDiamonds] = useState(1000);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <DiamondWidget />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          You are playing the game.
         </p>
-        <CoolButton count={count} onClick={handleClick} />
-        <CoolButton count={count} onClick={handleClick} />
         <ApiStatus />
           <a
             className="App-link"
@@ -33,4 +28,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Game;
