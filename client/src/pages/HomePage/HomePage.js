@@ -1,14 +1,7 @@
 import logo from '../../assets/images/shuriken.svg';
 import ApiStatus from '../../components/ui/ApiStatus';
-import { useState } from 'react';
 
 function HomePage() {
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount(count + 1);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -20,7 +13,6 @@ function HomePage() {
           <a
             className="App-link"
             href="/game"
-            target="_blank"
             rel="noopener noreferrer"
           >
             Play game

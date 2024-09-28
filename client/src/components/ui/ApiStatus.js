@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 function ApiStatus() {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('');
+  const statusClass = status === 200 ? 'status-ok' : 'status-error';
 
   useEffect(() => {
     const getStatus = async () => {
@@ -21,7 +22,7 @@ function ApiStatus() {
   return( 
     <div>
       <p>
-        Api status: {status}
+        Api status: <span class={statusClass}>{status}</span>
       </p>
     </div>
   );

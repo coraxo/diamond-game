@@ -11,19 +11,6 @@ services:
       - /app/node_modules
     environment:
       - ENV_VAR:lol
-  static-server:
-    container_name: random-static-server
-    build:
-      context: .
-      dockerfile: ./static-server/Dockerfile.dev
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./client/build/:/frontend-static
-      - ./static-server/:/app
-      - /app/node_modules
-    environment:
-      - ENV_VAR:lol
   backend:
     container_name: random-backend
     build:
@@ -36,3 +23,16 @@ services:
       - /app/node_modules
     environment:
       - ENV_VAR:lol
+  # static-server:
+  #   container_name: random-static-server
+  #   build:
+  #     context: .
+  #     dockerfile: ./static-server/Dockerfile.dev
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./client/build/:/frontend-static
+  #     - ./static-server/:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - ENV_VAR:lol

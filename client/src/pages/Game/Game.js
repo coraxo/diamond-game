@@ -7,20 +7,20 @@ function Game() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <DiamondWidget />
-        <p>
-          You are playing the game.
-        </p>
-        <ApiStatus />
-          <a
-            className="App-link"
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Exit game
-          </a>
+        <p>Adventure game</p>
       </header>
+      <DiamondWidget />
+      <p>
+        You are playing the game.
+      </p>
+      <a
+        className="App-link"
+        href="/"
+        rel="noopener noreferrer"
+      >
+        Exit game
+      </a>
+      <ApiStatus />
     </div>
   );
 }
