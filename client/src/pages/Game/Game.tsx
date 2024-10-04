@@ -1,6 +1,8 @@
-import logo from '../../assets/images/shuriken.svg';
-import ApiStatus from '../../components/ui/ApiStatus';
-import DiamondWidget from '../../components/ui/DiamondWidget';
+// @ts-ignore
+import logo from '../../assets/images/shuriken.svg'
+// @ts-ignore
+import ApiStatus from '../../components/ui/ApiStatus'
+import DiamondWidget from '../../components/ui/DiamondWidget'
 
 function Game() {
   return (
@@ -22,7 +24,7 @@ function Game() {
       </a>
       <ApiStatus />
     </div>
-  );
+  )
 }
 
-export default Game;
+export default Game

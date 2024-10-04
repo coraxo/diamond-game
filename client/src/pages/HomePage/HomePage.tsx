@@ -1,5 +1,7 @@
-import logo from '../../assets/images/shuriken.svg';
-import ApiStatus from '../../components/ui/ApiStatus';
+// @ts-ignore
+import logo from '../../assets/images/shuriken.svg'
+// @ts-ignore
+import ApiStatus from '../../components/ui/ApiStatus'
 
 function HomePage() {
   return (
@@ -19,7 +21,7 @@ function HomePage() {
           </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage
