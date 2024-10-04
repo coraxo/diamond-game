@@ -21,15 +21,16 @@ const RegistrationForm = () => {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError(null)
     setSuccess(false)
 
     try {
-      const result = sendRegistration(formData)
+      const result = await sendRegistration(formData)
       console.log('Registered succesfully')
       setSuccess(true)
+      setFormData({ username: '', password: ''})
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message)
@@ -74,6 +75,12 @@ const RegistrationForm = () => {
         </div>
         <button type="submit">Register</button>
       </form>
+      {success ? (
+        <p ><span className="green">Registration successful!</span> Proceed to login</p>
+      ) : ( '' )}
+      {error ? (
+        <p>Error: {error}</p>
+      ) : ( '' )}
       <a
         className="App-link"
         href="/"
