@@ -5,9 +5,10 @@ WORKDIR /app
 COPY ./backend/* .
 
 RUN npm install -g nodemon
+RUN npm install -g ts-node
 RUN npm install
 
 EXPOSE 3000
 
-CMD [ "npm","start" ]
+CMD [ "npm","run","dev" ]
 #CMD tail -f /dev/null
