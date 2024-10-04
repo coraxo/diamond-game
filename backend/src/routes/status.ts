@@ -8,7 +8,7 @@ router.get('/status', (req, res) => {
       "status": "Running"
   }
 
-  res.send(data)
+  res.status(200).send(data)
 })
 
 module.exports = router

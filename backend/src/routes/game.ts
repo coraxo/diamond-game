@@ -8,7 +8,7 @@ router.get('/diamondCount', (req, res) => {
       "diamonds": 1500
   }
 
-  res.send(data)
+  res.status(200).send(data)
 })
 
 module.exports = router

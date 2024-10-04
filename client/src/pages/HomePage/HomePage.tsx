@@ -12,12 +12,26 @@ function HomePage() {
           Adventure game
         </p>
         <ApiStatus />
-          <a
+        <a
+          className="App-link"
+          href="/game"
+          rel="noopener noreferrer"
+        >
+          Play game
+        </a>
+        <a
             className="App-link"
-            href="/game"
+            href="/registration"
             rel="noopener noreferrer"
           >
-            Play game
+            Register
+          </a>
+          <a
+            className="App-link"
+            href="/login"
+            rel="noopener noreferrer"
+          >
+            Login
           </a>
       </header>
     </div>
