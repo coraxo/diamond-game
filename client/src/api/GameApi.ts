@@ -12,7 +12,9 @@ export const fetchStatus = async () => {
 
 export const fetchDiamondCount = async () => {
   try {
-    const response = await fetch(apiBase + '/diamondCount')
+    const response = await fetch(apiBase + '/diamondCount', {
+      credentials: 'include'
+    })
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }

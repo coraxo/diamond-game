@@ -3,5 +3,12 @@
     "@prisma/client": "^5.20.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.4"
+  },
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "csrf-csrf": "^3.0.8"
   }
 }

@@ -45,7 +45,7 @@ router.post("/login", async (req, res) => {
     const user = await prisma.user.findUnique({
       where: { username: req.body.username }
     })
-    if (user === null) {
+    if (!user) {
       res.status(401).json({
         message: "Unauthorized"
       })
@@ -56,8 +56,19 @@ router.post("/login", async (req, res) => {
           message: "Unauthorized"
         })
       }
-      const token = await jwt.sign({username: user.username}, 'secret')
-      res.status(200).json({ token })
+      const token = await jwt.sign(
+        { username: user.username },
+        'jwt_secret',
+        { expiresIn: '1h' }
+      )
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        path: '/',
+        maxAge: 3600000, // 1 hour (same as token expiry)
+      });
+      res.status(200).json({ message: "Login successful" })
     }
   } catch (err) {
     if (err instanceof Error) {

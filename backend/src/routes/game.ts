@@ -2,8 +2,9 @@
 
 import express from 'express'
 const router = express.Router()
+const auth = require('../auth.ts')
 
-router.get('/diamondCount', (req, res) => {
+router.get('/diamondCount', auth, (req, res) => {
   const data = {
       "diamonds": 1500
   }

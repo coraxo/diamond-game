@@ -32,6 +32,7 @@ export const sendLogin = async (formData: LoginFormData) => {
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify(formData)
     })
 
