@@ -4,36 +4,71 @@ import express from 'express'
 import { PrismaClient } from '@prisma/client'
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const prisma = new PrismaClient()
 
-router.post("/register", (req, res) => {
-  bcrypt.hash(req.body.password, 10)
-    .then((hashedPassword : string) => {
-      const user = prisma.user.create({
-        data: {
-          username: req.body.username,
-          password: hashedPassword,
-        }
-      }).then(() => {
-        console.log("Created user")
-        res.status(200).send({
-          message: 'User created'
+router.post("/register", async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    await prisma.user.create({
+      data: {
+        username: req.body.username,
+        password: hashedPassword,
+      },
+    })
+    console.log("Created user")
+    res.status(200).json({
+      message: 'User created',
+    })
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      if (err.message.includes('hash')) {
+        res.status(500).json({
+          message: "Error hashing password",
+          err,
         })
-      })
-      .catch((err: any) => {
-        res.status(500).send({
+      } else {
+        res.status(500).json({
           message: "Error creating user",
-          err
+          err,
         })
-      })
+      }
+    } else {
+      res.status(500).json({ message: "Internal server error" })
+    }
+  }
+})
+
+router.post("/login", async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { username: req.body.username }
     })
-    .catch((err: any) => {
-      res.status(500).send({
-        message: "Error hashing password",
-        err
+    if (user === null) {
+      res.status(401).json({
+        message: "Unauthorized"
       })
-    })
+    } else {
+      const correctPassword = await bcrypt.compare(req.body.password, user.password)
+      if (!correctPassword) {
+        res.status(401).json({
+          message: "Unauthorized"
+        })
+      }
+      const token = await jwt.sign({username: user.username}, 'secret')
+      res.status(200).json({ token })
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: "Error logging in",
+        err,
+      })
+    } else {
+      res.status(500).json({ message: "Internal server error" })
+    }
+  }
 })
 
 module.exports = router

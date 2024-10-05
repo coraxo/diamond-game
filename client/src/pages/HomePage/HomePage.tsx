@@ -2,6 +2,7 @@
 import logo from '../../assets/images/shuriken.svg'
 // @ts-ignore
 import ApiStatus from '../../components/ui/ApiStatus'
+import LoginForm from '../../components/auth/LoginForm'
 
 function HomePage() {
   return (
@@ -20,19 +21,13 @@ function HomePage() {
           Play game
         </a>
         <a
-            className="App-link"
-            href="/registration"
-            rel="noopener noreferrer"
-          >
-            Register
-          </a>
-          <a
-            className="App-link"
-            href="/login"
-            rel="noopener noreferrer"
-          >
-            Login
-          </a>
+          className="App-link"
+          href="/registration"
+          rel="noopener noreferrer"
+        >
+          Register
+        </a>
+        <LoginForm />
       </header>
     </div>
   )
