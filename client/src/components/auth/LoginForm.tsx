@@ -1,13 +1,19 @@
 // @ts-ignore
 import { useState } from 'react'
 import { sendLogin } from '../../api/AuthApi'
+import { AuthVarsData } from '../../App'
+
+interface LoginFormProps {
+  authVars: AuthVarsData;
+  setAuthVars: React.Dispatch<React.SetStateAction<AuthVarsData>>
+}
 
 export interface LoginFormData {
   username: string
   password: string
 }
 
-const LoginForm = () => {
+const LoginForm: React.FC<LoginFormProps> = ({ authVars, setAuthVars }) => {
   const [formData, setFormData] = useState<LoginFormData>({ username: '', password: ''})
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<boolean>(false)
@@ -28,6 +34,7 @@ const LoginForm = () => {
     try {
       const result = await sendLogin(formData)
       console.log('Login successful')
+      console.log(result)
       
       setSuccess(true)
       setFormData({ username: '', password: ''})

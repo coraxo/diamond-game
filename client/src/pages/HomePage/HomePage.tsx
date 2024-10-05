@@ -3,8 +3,14 @@ import logo from '../../assets/images/shuriken.svg'
 // @ts-ignore
 import ApiStatus from '../../components/ui/ApiStatus'
 import LoginForm from '../../components/auth/LoginForm'
+import { AuthVarsData } from '../../App'
 
-function HomePage() {
+interface HomePageProps {
+  authVars: AuthVarsData;
+  setAuthVars: React.Dispatch<React.SetStateAction<AuthVarsData>>
+}
+
+const HomePage: React.FC<HomePageProps> = ({ authVars, setAuthVars }) => {
   return (
     <div className="App">
       <header className="App-header">
@@ -27,7 +33,7 @@ function HomePage() {
         >
           Register
         </a>
-        <LoginForm />
+        <LoginForm authVars={authVars} setAuthVars={setAuthVars} />
       </header>
     </div>
   )

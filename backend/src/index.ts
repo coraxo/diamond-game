@@ -2,18 +2,10 @@
 
 import express from 'express'
 import cors from 'cors'
-import { doubleCsrf } from 'csrf-csrf'
 import cookieParser from 'cookie-parser'
 const statusRoutes = require('./routes/status.ts')
 const gameRoutes = require('./routes/game.ts')
 const authRoutes = require('./routes/auth.ts')
-
-const {
-  invalidCsrfTokenError,
-  generateToken,
-  validateRequest,
-  doubleCsrfProtection,
-} = doubleCsrf({ getSecret: () => 'csrf_secret' });
 
 const app  = express()
 
