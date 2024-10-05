@@ -2,10 +2,13 @@
 import { useState } from 'react'
 import { sendLogin } from '../../api/AuthApi'
 import { AuthVarsData } from '../../App'
+import { UserData } from '../../App'
 
 interface LoginFormProps {
   authVars: AuthVarsData;
   setAuthVars: React.Dispatch<React.SetStateAction<AuthVarsData>>
+  userData: UserData,
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>
 }
 
 export interface LoginFormData {
@@ -13,7 +16,7 @@ export interface LoginFormData {
   password: string
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ authVars, setAuthVars }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ authVars, setAuthVars, userData, setUserData }) => {
   const [formData, setFormData] = useState<LoginFormData>({ username: '', password: ''})
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<boolean>(false)
@@ -36,6 +39,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ authVars, setAuthVars }) => {
       console.log('Login successful')
       console.log(result)
       
+      setUserData((oldUserData) => ({
+        ...oldUserData,
+        username: formData.username
+      }))
       setSuccess(true)
       setFormData({ username: '', password: ''})
     } catch (error: unknown) {

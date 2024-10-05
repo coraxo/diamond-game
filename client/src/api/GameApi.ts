@@ -12,7 +12,7 @@ export const fetchStatus = async () => {
 
 export const fetchDiamondCount = async () => {
   try {
-    const response = await fetch(apiBase + '/diamondCount', {
+    const response = await fetch(apiBase + '/diamonds', {
       credentials: 'include'
     })
     if (!response.ok) {

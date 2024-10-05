@@ -47,3 +47,49 @@ export const sendLogin = async (formData: LoginFormData) => {
     throw error
   }
 }
+
+export const getUser = async () => {
+  try {
+    const response = await fetch(apiBase + '/user', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+
+    if (!response.ok) {
+      throw new Error('Fetching user failed')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log("Caught error: ", error)
+    throw error
+  }
+}
+
+
+export const logout = async () => {
+  try {
+    const response = await fetch(apiBase + '/logout', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+
+    if (!response.ok) {
+      throw new Error('Logout failed')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log("Caught error: ", error)
+    throw error
+  }
+}
+

@@ -5,6 +5,7 @@ import { PrismaClient } from '@prisma/client'
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const auth = require('../auth.ts')
 
 const prisma = new PrismaClient()
 
@@ -78,6 +79,60 @@ router.post("/login", async (req, res) => {
       })
     } else {
       res.status(500).json({ message: "Internal server error" })
+    }
+  }
+})
+
+router.get("/logout", async (req, res) => {
+  try {
+    res.cookie('token', 'none', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      path: '/',
+      expires: new Date(Date.now() + 1) // Expire cookie in 0.001 seconds
+    })
+    res.status(200).json({ message: "Logout successful" })
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: "Error logging out",
+        err,
+      })
+    } else {
+      res.status(500).json({ message: "Internal server error" })
+    }
+  }
+})
+
+router.get('/user', auth, async (req, res) => {
+  try {
+    if (req.user && req.user.username) {
+      const { username } = req.user
+      const user = await prisma.user.findUnique({
+        where: {username: username},
+      })
+      if (!user) {
+        res.status(404).send({
+          message: "User not found"
+        })
+      } else {
+        const data = {
+          "username": user.username
+        }
+        res.status(200).send(data)
+      }
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).send({
+        message: "Internal server error",
+        err
+      })
+    } else {
+      res.status(500).send({
+        message: "Internal server error"
+      })
     }
   }
 })
