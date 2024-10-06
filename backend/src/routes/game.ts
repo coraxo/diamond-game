@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import express from 'express'
 const router = express.Router()
 const auth = require('../auth.ts')
+import { generateRoom } from '../gameLogic';
 
 declare global {
   namespace Express {
@@ -114,6 +115,7 @@ router.put('/player', auth, async (req, res) => {
             stats: {},
             gear: {},
             inventory: {},
+            currentRoom: generateRoom({biome:'forest', description: ''}, true),
             user: { connect: { username: user.username }}
           },
         })

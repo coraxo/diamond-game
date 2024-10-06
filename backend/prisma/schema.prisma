@@ -21,13 +21,13 @@ model User {
 }
 
 model Player {
-  id        Int     @default(autoincrement()) @id
-  name      String
-  // published Boolean @default(false)
-  user      User    @relation(fields: [userId], references: [id])
-  userId    Int     @unique
-  diamonds  Int
-  stats     Json
-  gear      Json
-  inventory Json
+  id            Int     @default(autoincrement()) @id
+  name          String
+  user          User    @relation(fields: [userId], references: [id])
+  userId        Int     @unique
+  diamonds      Int
+  stats         Json
+  gear          Json
+  inventory     Json
+  currentRoom   Json?
 }

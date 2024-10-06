@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 // @ts-ignore
 import logo from '../../assets/images/shuriken.svg'
 import ApiStatus from '../../components/ui/ApiStatus'
