@@ -263,7 +263,7 @@ export const generateRoom = (previousRoom: GameRoom, initial: boolean = false) =
     const biome = chooseBiome(previousRoom.biome)
     return {
       biome: biome,
-      description: generateDescription(previousRoom.biome, biome)
+      description: generateDescription(previousRoom, biome)
     }
   }
 }
@@ -272,17 +272,19 @@ const chooseBiome = (previousBiome: Biome): Biome => {
   if (Math.random() < .65) {
     return previousBiome
   } else {
-    return biomes[Math.floor(Math.random() * biomes.length)]
+    const filteredBiomes = biomes.filter(biome => biome !== previousBiome)
+    return filteredBiomes[Math.floor(Math.random() * filteredBiomes.length)]
   }
 }
 
-const generateDescription = (previousBiome: Biome, biome: Biome): string => {
+const generateDescription = (previousRoom: GameRoom, biome: Biome): string => {
   let description = ''
 
-  if (previousBiome !== biome) {
-    description += generateBiomeTransition(previousBiome, biome)
+  if (previousRoom.biome !== biome) {
+    description += generateBiomeTransition(previousRoom.biome, biome)
   }
-  description += roomDescriptions[biome][Math.floor(Math.random() * roomDescriptions[biome].length)]
+  const filteredDescriptions = roomDescriptions[biome].filter(description => description !== previousRoom.description);
+  description += filteredDescriptions[Math.floor(Math.random() * filteredDescriptions.length)]
 
   return description
 }
