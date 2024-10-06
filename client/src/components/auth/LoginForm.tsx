@@ -73,7 +73,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ authVars, setAuthVars, userData, 
         <p ><span className="green">Login successful!</span> Proceed to game</p>
       ) : ( '' )}
       {error ? (
-        <p>Error: {error}</p>
+        <p className="error-text">Error: {error}</p>
       ) : ( '' )}
     </>
   )

@@ -36,28 +36,32 @@ const HomePage: React.FC<HomePageProps> = ({ authVars, setAuthVars, userData, se
       <div className="gameRender">
         {userData.username ?
           (
-            <>
-              <p>Hello {userData.username}!</p>
-              <a
-                className="App-link"
-                href="/game"
-                rel="noopener noreferrer"
-              >
-                Play game
-              </a>
-            </>
+            <div className="welcome-splash">
+              <p>Welcome, {userData.username}!</p>
+              <div className="play-button">
+                <a
+                  //className="play-button"
+                  href="/game"
+                  rel="noopener noreferrer"
+                >
+                  Play game
+                </a>
+              </div>
+            </div>
           )
           :
           (
             <>
+              <h2>Log in to play the game</h2>
+              <LoginForm authVars={authVars} setAuthVars={setAuthVars} userData={userData} setUserData={setUserData} />
+              <p>Or</p>
               <a
                 className="App-link"
                 href="/registration"
                 rel="noopener noreferrer"
               >
-                Register
+                Create an account
               </a>
-              <LoginForm authVars={authVars} setAuthVars={setAuthVars} userData={userData} setUserData={setUserData} />
             </>
           )
         }

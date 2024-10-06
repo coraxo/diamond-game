@@ -3,6 +3,7 @@ import logo from '../../assets/images/shuriken.svg'
 import { useState } from 'react'
 import { sendRegistration } from '../../api/AuthApi'
 import { RegistrationFormData } from '../../types'
+import ApiStatus from '../../components/ui/ApiStatus'
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState<RegistrationFormData>({ username: '', password: ''})
@@ -43,47 +44,52 @@ const RegistrationForm = () => {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Adventure game</p>
       </header>
-      <p>
-        You are registering to play the game.
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-      {success ? (
-        <p ><span className="green">Registration successful!</span> Proceed to login</p>
-      ) : ( '' )}
-      {error ? (
-        <p>Error: {error}</p>
-      ) : ( '' )}
-      <a
-        className="App-link"
-        href="/"
-        rel="noopener noreferrer"
-      >
-        Back
-      </a>
+      <div className="gameRender">
+        <h2>
+          Create account
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Register</button>
+        </form>
+        {success ? (
+          <p ><span className="green">Registration successful!</span> Proceed to login</p>
+        ) : ( '' )}
+        {error ? (
+          <p>Error: {error}</p>
+        ) : ( '' )}
+      </div>
+      <div className="footer">
+        <a
+          className="App-link"
+          href="/"
+          rel="noopener noreferrer"
+        >
+          Back
+        </a>
+        <ApiStatus />
+      </div>
     </div>
   )
 }

@@ -22,7 +22,7 @@ function ApiStatus() {
   return( 
     <div>
       <p>
-        Api status: <span className={statusClass}>{status}</span>
+        Api status: <span className={`status-indicator ${statusClass}`}></span>
       </p>
     </div>
   )

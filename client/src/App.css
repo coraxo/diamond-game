@@ -26,6 +26,7 @@
 
 .gameRender {
   min-height: 30vh;
+  color: #44474d;
 }
 
 .gameControls {
@@ -40,8 +41,12 @@
   justify-content: flex-end;
 }
 
+.welcome-splash {
+  padding-top: 5vh;
+}
+
 .App-link {
-  color: #61dafb;
+  color: #32c5ee;
 }
 
 @keyframes App-logo-spin {
@@ -53,10 +58,92 @@
   }
 }
 
-.status-ok {
-  color: lightgreen;
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.status-error {
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #44474d;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.play-button {
+  max-width: 80%;
+  width: 240px;
+  margin: auto;
+  margin-top: 40px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(0, 150, 0, 0.5);
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: red;
+  margin-left: 8px;
+}
+
+.status-indicator.status-ok {
+  background-color: lightgreen;
+}
+
+.status-indicator.status-error {
   color: red;
+}
+
+.error-text {
+  color: rgb(173, 21, 21);
 }
