@@ -24,7 +24,7 @@ export const createPlayer = async (formData: CreatePlayerFormData) => {
     })
 
     if (!response.ok) {
-      throw new Error('Registration failed')
+      throw new Error('Character creation failed')
     }
 
     const data = await response.json()
@@ -69,6 +69,28 @@ export const fetchDiamondCount = async () => {
     return data
   } catch (error) {
     console.error('Error fetching status:', error)
+    throw error
+  }
+}
+
+export const getNewLocation = async () => {
+  try {
+    const response = await fetch(apiBase + '/newlocation', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+
+    if (!response.ok) {
+      throw new Error('Fetching new location failed')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log("Caught error: ", error)
     throw error
   }
 }

@@ -3,6 +3,11 @@ export interface PlayerData {
   diamonds: number | null
 }
 
+export interface LocationData {
+  biome: string,
+  description: string
+}
+
 export interface CreatePlayerFormProps {
   playerData: PlayerData,
   setPlayerData: React.Dispatch<React.SetStateAction<PlayerData>>
