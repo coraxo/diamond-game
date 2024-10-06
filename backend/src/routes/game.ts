@@ -1,17 +1,17 @@
 'use strict'
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
 import express from 'express'
 const router = express.Router()
 const auth = require('../auth.ts')
-import { GameRoom, generateRoom } from '../gameLogic';
+import { GameRoom, generateRoom } from '../gameLogic'
 
 declare global {
   namespace Express {
     interface Request {
       user?: {
-        username: string;
-      };
+        username: string
+      }
     }
   }
 }

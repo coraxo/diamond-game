@@ -253,7 +253,6 @@ const enterBiomeDescriptions: Record<Biome, string[]> = {
 }
 
 export const generateRoom = (previousRoom: GameRoom, initial: boolean = false) => {
-  console.log("We here")
   if (initial) {
     return {
       biome: 'forest',
@@ -283,7 +282,7 @@ const generateDescription = (previousRoom: GameRoom, biome: Biome): string => {
   if (previousRoom.biome !== biome) {
     description += generateBiomeTransition(previousRoom.biome, biome)
   }
-  const filteredDescriptions = roomDescriptions[biome].filter(description => description !== previousRoom.description);
+  const filteredDescriptions = roomDescriptions[biome].filter(description => description !== previousRoom.description)
   description += filteredDescriptions[Math.floor(Math.random() * filteredDescriptions.length)]
 
   return description

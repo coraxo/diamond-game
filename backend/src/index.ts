@@ -1,12 +1,13 @@
 'use strict'
 
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+
 const statusRoutes = require('./routes/status.ts')
 const gameRoutes = require('./routes/game.ts')
 const authRoutes = require('./routes/auth.ts')
-
 const app  = express()
 
 app.use(cors({

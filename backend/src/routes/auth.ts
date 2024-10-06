@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
       }
       const token = await jwt.sign(
         { username: user.username },
-        'jwt_secret',
+        process.env.JWT_SECRET,
         { expiresIn: '1h' }
       )
       res.cookie('token', token, {
@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
         path: '/',
         maxAge: 3600000, // 1 hour (same as token expiry)
-      });
+      })
       res.status(200).json({ message: "Login successful" })
     }
   } catch (err) {

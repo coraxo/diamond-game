@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 interface SentenceSplitterProps {
-  text: string;
+  text: string
 }
 
 const SentenceSplitter: React.FC<SentenceSplitterProps> = ({ text }) => {
@@ -16,7 +16,7 @@ const SentenceSplitter: React.FC<SentenceSplitterProps> = ({ text }) => {
         </p>
       ))}
     </div>
-  );
-};
+  )
+}
 
 export default SentenceSplitter

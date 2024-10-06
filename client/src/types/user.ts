@@ -6,9 +6,9 @@ export interface RegistrationFormData {
 }
 
 export interface LoginFormProps {
-  authVars: AuthVarsData;
+  authVars: AuthVarsData
   setAuthVars: React.Dispatch<React.SetStateAction<AuthVarsData>>
-  userData: UserData,
+  userData: UserData
   setUserData: React.Dispatch<React.SetStateAction<UserData>>
 }
 
