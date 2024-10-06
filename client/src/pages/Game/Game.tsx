@@ -60,13 +60,15 @@ function Game() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Adventure game</p>
+        <DiamondWidget />
       </header>
       {playerData.name ?
       (
         <>
           <div className='gameRender'>
-            <DiamondWidget />
-            <SentenceSplitter text={locationData.description} />
+            <div className="room-description">
+              <SentenceSplitter text={locationData.description} />
+            </div>
           </div>
           <div className='gameControls'>
             <p>What would {playerData.name} do?</p>
@@ -83,9 +85,10 @@ function Game() {
       )
       :
       (
-        <>
+        <div className="gameRender">
+          <h2>Character creation</h2>
           <CreatePlayerForm playerData={playerData} setPlayerData={setPlayerData} />
-        </>
+        </div>
       )}
       <div className="footer">
         <a

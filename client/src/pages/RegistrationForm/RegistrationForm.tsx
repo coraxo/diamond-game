@@ -74,7 +74,14 @@ const RegistrationForm = () => {
           <button type="submit">Register</button>
         </form>
         {success ? (
-          <p ><span className="green">Registration successful!</span> Proceed to login</p>
+          <p ><span className="green">Registration successful! </span>
+            <a
+              className="App-link"
+              href="/"
+              rel="noopener noreferrer">
+                Proceed to login
+            </a>
+          </p>
         ) : ( '' )}
         {error ? (
           <p>Error: {error}</p>

@@ -20,13 +20,57 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.gameRender {
-  min-height: 30vh;
+.diamond-widget {
+  padding: calc(0.5vh + 5px) calc(1vw + 10px);
+  border-radius: 2px;
+  background-color: white;
   color: #44474d;
+  font-size: calc(0.5vh + 16px);
+  position: absolute;
+  display: flex;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  p {
+    margin: 0px;
+  }
+  .diamond-icon {
+    max-height: calc(0.5vh + 18px);
+    padding-right: 6px;
+    position:relative;
+    bottom: -3px;
+  }
+  .diamond-count {
+    position: relative;
+    bottom: 1px;
+  }
+}
+
+.diamond-widget:hover {
+  background-color: #eeeeee;
+}
+
+.gameRender {
+  min-height: 40vh;
+  color: #44474d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.room-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 20vh;
+  overflow: scroll;
 }
 
 .gameControls {
@@ -34,7 +78,7 @@
 }
 
 .footer {
-  min-height: 25vh;
+  min-height: 15vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -47,6 +91,10 @@
 
 .App-link {
   color: #32c5ee;
+}
+
+.App-link:hover {
+  color: #2ab1d6;
 }
 
 @keyframes App-logo-spin {
@@ -117,7 +165,7 @@ button {
   }
 }
 
-button:hover {
+button:hover, .play-button:hover {
   background-color: #45a049;
 }
 

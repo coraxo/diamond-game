@@ -1,4 +1,5 @@
 // @ts-ignore
+import diamondIcon from '../../assets/images/diamond.svg'
 import { fetchDiamondCount } from '../../api/GameApi'
 import { useEffect, useState } from 'react'
 
@@ -20,9 +21,16 @@ function DiamondWidget() {
   }, [])
 
   return (
-    <div>
+    <div className="diamond-widget">
       <p>
-        { error ? `Error fetching data` : `Diamonds: ${diamonds}` }
+        { error ? `Error fetching data` :
+          (
+            <>
+              <img className="diamond-icon" src={diamondIcon} alt="Diamond" />
+              <span className="diamond-count">{diamonds}</span>
+            </>
+          )
+        }
       </p>
     </div>
   )
