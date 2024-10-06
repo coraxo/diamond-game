@@ -42,20 +42,25 @@ router.post("/register", async (req, res) => {
 })
 
 router.post("/login", async (req, res) => {
+  let sent = false
   try {
     const user = await prisma.user.findUnique({
       where: { username: req.body.username }
     })
     if (!user) {
-      res.status(401).json({
-        message: "Unauthorized"
-      })
-    } else {
-      const correctPassword = await bcrypt.compare(req.body.password, user.password)
-      if (!correctPassword) {
+      if (!sent) {
         res.status(401).json({
           message: "Unauthorized"
         })
+        sent = true
+      }
+    } else {
+      const correctPassword = await bcrypt.compare(req.body.password, user.password)
+      if (!correctPassword && !sent) {
+        res.status(401).json({
+          message: "Unauthorized"
+        })
+        sent = true
       }
       const token = await jwt.sign(
         { username: user.username },
@@ -72,13 +77,15 @@ router.post("/login", async (req, res) => {
       res.status(200).json({ message: "Login successful" })
     }
   } catch (err) {
-    if (err instanceof Error) {
-      res.status(500).json({
-        message: "Error logging in",
-        err,
-      })
-    } else {
-      res.status(500).json({ message: "Internal server error" })
+    if (!sent) {
+      if (err instanceof Error) {
+        res.status(500).json({
+          message: "Error logging in",
+          err,
+        })
+      } else {
+        res.status(500).json({ message: "Internal server error" })
+      }
     }
   }
 })

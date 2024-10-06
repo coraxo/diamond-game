@@ -18,7 +18,7 @@ module.exports = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.token
     const decodedToken = await jwt.verify(
       token,
-      "jwt_secret"
+      process.env.JWT_SECRET
     )
     const user = await decodedToken
     req.user = user
