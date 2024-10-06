@@ -1,3 +1,5 @@
+import { CreatePlayerFormData } from "../types"
+
 const apiBase = 'http://localhost:3001/api'
 
 export const fetchStatus = async () => {
@@ -6,6 +8,51 @@ export const fetchStatus = async () => {
     return response.status
   } catch (error) {
     console.error('Error fetching status:', error)
+    throw error
+  }
+}
+
+export const createPlayer = async (formData: CreatePlayerFormData) => {
+  try {
+    const response = await fetch(apiBase + '/player', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify(formData)
+    })
+
+    if (!response.ok) {
+      throw new Error('Registration failed')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log("Caught error: ", error)
+    throw error
+  }
+}
+
+export const getPlayer = async () => {
+  try {
+    const response = await fetch(apiBase + '/player', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+
+    if (!response.ok) {
+      throw new Error('Fetching user failed')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log("Caught error: ", error)
     throw error
   }
 }

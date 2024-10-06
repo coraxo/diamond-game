@@ -1,20 +1,10 @@
 import { useEffect } from 'react'
 // @ts-ignore
 import logo from '../../assets/images/shuriken.svg'
-// @ts-ignore
 import ApiStatus from '../../components/ui/ApiStatus'
 import LoginForm from '../../components/auth/LoginForm'
-import { AuthVarsData } from '../../App'
-import { UserData } from '../../App'
 import { logout } from '../../api/AuthApi'
-
-
-interface HomePageProps {
-  authVars: AuthVarsData
-  setAuthVars: React.Dispatch<React.SetStateAction<AuthVarsData>>
-  userData: UserData,
-  setUserData: React.Dispatch<React.SetStateAction<UserData>>
-}
+import { HomePageProps } from '../../types'
 
 const HomePage: React.FC<HomePageProps> = ({ authVars, setAuthVars, userData, setUserData }) => {
 

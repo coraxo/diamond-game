@@ -1,20 +1,7 @@
-// @ts-ignore
 import { useState } from 'react'
 import { sendLogin } from '../../api/AuthApi'
-import { AuthVarsData } from '../../App'
-import { UserData } from '../../App'
-
-interface LoginFormProps {
-  authVars: AuthVarsData;
-  setAuthVars: React.Dispatch<React.SetStateAction<AuthVarsData>>
-  userData: UserData,
-  setUserData: React.Dispatch<React.SetStateAction<UserData>>
-}
-
-export interface LoginFormData {
-  username: string
-  password: string
-}
+import { LoginFormProps } from '../../types'
+import { LoginFormData } from '../../types'
 
 const LoginForm: React.FC<LoginFormProps> = ({ authVars, setAuthVars, userData, setUserData }) => {
   const [formData, setFormData] = useState<LoginFormData>({ username: '', password: ''})

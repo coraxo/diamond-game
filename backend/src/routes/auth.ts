@@ -118,7 +118,9 @@ router.get('/user', auth, async (req, res) => {
         })
       } else {
         const data = {
-          "username": user.username
+          user: {
+            "username": user.username
+          }
         }
         res.status(200).send(data)
       }

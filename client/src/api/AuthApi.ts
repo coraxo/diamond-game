@@ -1,5 +1,5 @@
-import { RegistrationFormData } from "../pages/RegistrationForm/RegistrationForm"
-import { LoginFormData } from "../components/auth/LoginForm"
+import { RegistrationFormData } from "../types/index"
+import { LoginFormData } from "../types/index"
 
 const apiBase = 'http://localhost:3001/api'
 

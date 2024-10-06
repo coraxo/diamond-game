@@ -2,11 +2,7 @@
 import logo from '../../assets/images/shuriken.svg'
 import { useState } from 'react'
 import { sendRegistration } from '../../api/AuthApi'
-
-export interface RegistrationFormData {
-  username: string
-  password: string
-}
+import { RegistrationFormData } from '../../types'
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState<RegistrationFormData>({ username: '', password: ''})

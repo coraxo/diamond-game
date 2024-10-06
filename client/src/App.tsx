@@ -6,15 +6,8 @@ import HomePage from './pages/HomePage/HomePage'
 import Game from './pages/Game/Game'
 import RegistrationForm from './pages/RegistrationForm/RegistrationForm'
 import { getUser } from './api/AuthApi'
-
-export interface AuthVarsData {
-  jwtToken: string | null,
-  csrfToken: string | null
-}
-
-export interface UserData {
-  username: string | null
-}
+import { AuthVarsData } from './types'
+import { UserData } from './types'
 
 function App() {
   const [authVars, setAuthVars] = useState<AuthVarsData>({ jwtToken: null, csrfToken: null })
@@ -23,7 +16,7 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const user = await getUser()
+        const { user } = await getUser()
         if (user && user.username) {
           setUserData((prevUserData) => ({
             ...prevUserData,
