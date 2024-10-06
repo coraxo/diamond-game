@@ -24,6 +24,22 @@
   color: white;
 }
 
+.gameRender {
+  min-height: 30vh;
+}
+
+.gameControls {
+  min-height: 5vh;
+}
+
+.footer {
+  min-height: 25vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 .App-link {
   color: #61dafb;
 }

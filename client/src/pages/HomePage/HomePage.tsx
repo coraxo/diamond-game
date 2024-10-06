@@ -32,19 +32,12 @@ const HomePage: React.FC<HomePageProps> = ({ authVars, setAuthVars, userData, se
         <p>
           Adventure game
         </p>
-        <ApiStatus />
+      </header>
+      <div className="gameRender">
         {userData.username ?
           (
             <>
               <p>Hello {userData.username}!</p>
-              <a
-                className="App-link"
-                href="/logout"
-                rel="noopener noreferrer"
-                onClick={handleLogout}
-              >
-                Log out
-              </a>
               <a
                 className="App-link"
                 href="/game"
@@ -68,7 +61,21 @@ const HomePage: React.FC<HomePageProps> = ({ authVars, setAuthVars, userData, se
             </>
           )
         }
-      </header>
+      </div>
+      <div className="footer">
+        {userData.username ?
+        (
+          <a
+            className="App-link"
+            href="/logout"
+            rel="noopener noreferrer"
+            onClick={handleLogout}
+          >
+            Log out
+          </a>
+        ) : ( '' )}
+        <ApiStatus />
+      </div>
     </div>
   )
 }

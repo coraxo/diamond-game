@@ -5,10 +5,10 @@ import ApiStatus from '../../components/ui/ApiStatus'
 import DiamondWidget from '../../components/ui/DiamondWidget'
 import CreatePlayerForm from './CreatePlayerForm'
 import { getNewLocation, getPlayer } from '../../api/GameApi'
+import SentenceSplitter from '../../components/ui/SentenceSplitter'
 
 import { PlayerData } from '../../types'
 import { LocationData } from '../../types'
-import SentenceSplitter from '../../components/ui/SentenceSplitter'
 
 function Game() {
   const [playerData, setPlayerData] = useState <PlayerData>({ name: null, diamonds: null })
@@ -64,17 +64,21 @@ function Game() {
       {playerData.name ?
       (
         <>
-          <DiamondWidget />
-          <SentenceSplitter text={locationData.description} />
-          <p>What would {playerData.name} do?</p>
-          <a
-            className="App-link"
-            href="/"
-            rel="noopener noreferrer"
-            onClick={handleMovement}
-          >
-            Keep moving
-          </a>
+          <div className='gameRender'>
+            <DiamondWidget />
+            <SentenceSplitter text={locationData.description} />
+          </div>
+          <div className='gameControls'>
+            <p>What would {playerData.name} do?</p>
+            <a
+              className="App-link"
+              href="/"
+              rel="noopener noreferrer"
+              onClick={handleMovement}
+            >
+              Keep moving
+            </a>
+          </div>
         </>
       )
       :
@@ -83,16 +87,16 @@ function Game() {
           <CreatePlayerForm playerData={playerData} setPlayerData={setPlayerData} />
         </>
       )}
-      <br />
-      <br />
-      <a
-        className="App-link"
-        href="/"
-        rel="noopener noreferrer"
-      >
-        Exit game
-      </a>
-      <ApiStatus />
+      <div className="footer">
+        <a
+          className="App-link"
+          href="/"
+          rel="noopener noreferrer"
+        >
+          Exit game
+        </a>
+        <ApiStatus />
+      </div>
     </div>
   )
 }
