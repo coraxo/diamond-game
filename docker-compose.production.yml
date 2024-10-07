@@ -1,0 +1,27 @@
+services:
+  client:
+    container_name: random-client
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client/:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+  backend:
+    container_name: random-backend
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile.dev
+    depends_on:
+      - db
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./backend/:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
