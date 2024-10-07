@@ -69,7 +69,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 20vh;
+  max-height: 35vh;
   overflow: scroll;
 }
 
