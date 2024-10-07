@@ -1,25 +1,10 @@
 services:
-  client:
-    container_name: random-client
-    build:
-      context: .
-      dockerfile: ./client/Dockerfile.dev
+  app:
+    container_name: diamond-app
+    image: diamond-app:latest
     ports:
-      - '3000:3000'
-    volumes:
-      - ./client/:/app
-      - /app/node_modules
+      - '80:3001'
     environment:
-      - NODE_ENV=development
-  backend:
-    container_name: random-backend
-    build:
-      context: .
-      dockerfile: ./backend/Dockerfile.dev
-    ports:
-      - '3001:3001'
-    volumes:
-      - ./backend/:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}

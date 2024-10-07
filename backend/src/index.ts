@@ -3,12 +3,15 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
 import cookieParser from 'cookie-parser'
 
-const statusRoutes = require('./routes/status.ts')
-const gameRoutes = require('./routes/game.ts')
-const authRoutes = require('./routes/auth.ts')
+const statusRoutes = require('./routes/status')
+const gameRoutes = require('./routes/game')
+const authRoutes = require('./routes/auth')
 const app  = express()
+
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -21,6 +24,10 @@ app.use(express.json())
 app.use('/api', statusRoutes)
 app.use('/api', gameRoutes)
 app.use('/api', authRoutes)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {

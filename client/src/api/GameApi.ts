@@ -1,6 +1,7 @@
 import { CreatePlayerFormData } from "../types"
 
-const apiBase = 'http://localhost:3001/api'
+//const apiBase = 'http://localhost:3001/api'
+const apiBase = '/api'
 
 export const fetchStatus = async () => {
   try {

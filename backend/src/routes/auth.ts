@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client'
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const auth = require('../auth.ts')
+const auth = require('../auth')
 
 const prisma = new PrismaClient()
 

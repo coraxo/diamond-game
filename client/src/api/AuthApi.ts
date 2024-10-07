@@ -1,7 +1,8 @@
 import { RegistrationFormData } from "../types/index"
 import { LoginFormData } from "../types/index"
 
-const apiBase = 'http://localhost:3001/api'
+//const apiBase = 'http://localhost:3001/api'
+const apiBase = '/api'
 
 export const sendRegistration = async (formData: RegistrationFormData) => {
   try {

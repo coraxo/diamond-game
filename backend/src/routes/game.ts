@@ -3,7 +3,7 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
 const router = express.Router()
-const auth = require('../auth.ts')
+const auth = require('../auth')
 import { GameRoom, generateRoom } from '../gameLogic'
 
 declare global {

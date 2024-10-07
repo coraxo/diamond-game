@@ -1,0 +1,27 @@
+# React app
+FROM node:16-alpine AS build
+WORKDIR /app
+COPY ./client/package.json ./client/package-lock.json ./
+RUN npm install --production
+COPY ./client/ .
+RUN npm run build
+
+# Express app
+FROM node:16-alpine
+WORKDIR /app
+
+# Copy backend files
+COPY ./backend/package.json ./backend/package-lock.json ./
+RUN npm install --production
+COPY ./backend/ .
+RUN npm install typescript
+RUN npm run build
+RUN npx prisma generate
+
+# Copy built React files from Stage 1
+COPY --from=build /app/build ./public
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start"]
+#CMD tail -f /dev/null

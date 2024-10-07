@@ -1,0 +1,1 @@
+docker build -f ./Dockerfile.production -t diamond-app .
