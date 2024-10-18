@@ -1,7 +1,7 @@
 services:
   app:
     container_name: diamond-app
-    image: diamond-app:latest
+    image: coraxo/diamond-app:latest
     ports:
       - '80:3001'
     environment:

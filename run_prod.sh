@@ -3,5 +3,5 @@
 if [ "$1" == "stop" ]; then
   docker-compose -f docker-compose.production.yml down
 else
-  docker-compose -f docker-compose.production.yml up -d
+  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin && git pull && docker-compose -f docker-compose.production.yml up -d
 fi
