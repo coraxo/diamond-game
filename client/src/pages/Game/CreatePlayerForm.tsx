@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { createPlayer } from '../../api/GameApi'
+import { createPlayer, getPlayer } from '../../api/GameApi'
 import { CreatePlayerFormProps } from '../../types'
 import { CreatePlayerFormData } from '../../types'
 
-const CreatePlayerForm: React.FC<CreatePlayerFormProps> = ({ playerData, setPlayerData }) => {
+const CreatePlayerForm: React.FC<CreatePlayerFormProps> = ({ playerData, setPlayerData, setLocationData }) => {
   const [formData, setFormData] = useState<CreatePlayerFormData>({ name: '' })
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<boolean>(false)
@@ -20,18 +20,26 @@ const CreatePlayerForm: React.FC<CreatePlayerFormProps> = ({ playerData, setPlay
     e.preventDefault()
     setError(null)
     setSuccess(false)
-
+    // Refactor this so that player and location data is fetched in Game.tsx after successful registration
     try {
       const result = await createPlayer(formData)
       console.log('Login successful')
       console.log(result)
-
-      setPlayerData((oldPlayerData) => ({
-        ...oldPlayerData,
-        name: formData.name
-      }))
-      setSuccess(true)
-      setFormData({ name: '' })
+      const { player } = await getPlayer()
+      if (player && player.name) {
+        setPlayerData((prevPlayerData) => ({
+          ...prevPlayerData,
+          name: player.name,
+          diamonds: player.diamonds
+        }))
+        setLocationData((prevLocationData) => ({
+          ...prevLocationData,
+          biome: player.currentRoom.biome,
+          description: player.currentRoom.description
+        }))
+        setSuccess(true)
+        setFormData({ name: '' })
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message)

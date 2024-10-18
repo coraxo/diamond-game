@@ -11,6 +11,7 @@ export interface LocationData {
 export interface CreatePlayerFormProps {
   playerData: PlayerData,
   setPlayerData: React.Dispatch<React.SetStateAction<PlayerData>>
+  setLocationData: React.Dispatch<React.SetStateAction<LocationData>>
 }
 
 export interface CreatePlayerFormData {

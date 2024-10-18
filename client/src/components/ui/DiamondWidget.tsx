@@ -18,7 +18,9 @@ const DiamondWidget: React.FC<DiamondWidgetProps> = ({ enabled }) => {
       }
     }
 
-    getStatus()
+    if (enabled) {
+      getStatus()
+    }
   }, [enabled])
 
   if (enabled) {

@@ -13,6 +13,7 @@ import { LocationData } from '../../types'
 function Game() {
   const [playerData, setPlayerData] = useState <PlayerData>({ name: null, diamonds: null })
   const [locationData, setLocationData] = useState <LocationData>({ biome: '', description: '' })
+  let playerDataInitialized = playerData.diamonds !== null
 
   useEffect(() => {
     const fetchPlayer = async () => {
@@ -60,7 +61,7 @@ function Game() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Adventure game</p>
-        <DiamondWidget enabled={playerData.name != null} />
+        {playerDataInitialized && <DiamondWidget enabled={playerDataInitialized} />}
       </header>
       {playerData.name ?
       (
@@ -87,7 +88,7 @@ function Game() {
       (
         <div className="gameRender">
           <h2>Character creation</h2>
-          <CreatePlayerForm playerData={playerData} setPlayerData={setPlayerData} />
+          <CreatePlayerForm playerData={playerData} setPlayerData={setPlayerData} setLocationData={setLocationData} />
         </div>
       )}
       <div className="footer">
