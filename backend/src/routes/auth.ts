@@ -65,6 +65,9 @@ router.post("/login", async (req, res) => {
         sent = true
       }
       console.log("Debug: Login correct!")
+      console.log(process.env)
+      console.log("user: ", user)
+      console.log("user.username: ", user.username)
       const token = await jwt.sign(
         { username: user.username },
         process.env.JWT_SECRET,
