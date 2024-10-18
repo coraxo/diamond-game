@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy_ec2:
+    name: deploy to ec2 instance
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Build
+      id: build
+      uses: cloudposse/github-action-docker-build-push@main
+      with:
+        file: Dockerfile.production
+        image_name: diamond-app
+        registry: registry.hub.docker.com
+        organization: "${{ github.event.repository.owner.login }}"
+        repository: "${{ github.event.repository.name }}"
+        login: "${{ secrets.DOCKER_LOGIN }}"
+        password: "${{ secrets.DOCKER_PASSWORD }}"
+        platforms: linux/amd64,linux/arm64
+
+    outputs:
+      image: ${{ steps.build.outputs.image }}
+      tag: ${{ steps.build.outputs.tag }}
+
+
+      
