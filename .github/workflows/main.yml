@@ -33,7 +33,7 @@ jobs:
         eval $(ssh-agent -s)
         ssh-add ~/.ssh/id_rsa
         ssh-keyscan -H "${{ secrets.EC2_URL }}" >> ~/.ssh/known_hosts
-        ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_URL "cd diamond-app && ./deploy_prod.sh"
+        ssh -o StrictHostKeyChecking=no "{{ secrets.$EC2_USERNAME }}"@"{{ secrets.$EC2_URL  }}" "cd diamond-app && ./deploy_prod.sh"
 
     outputs:
       image: ${{ steps.build.outputs.image }}
