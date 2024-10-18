@@ -48,6 +48,7 @@ router.post("/login", async (req, res) => {
       where: { username: req.body.username }
     })
     if (!user) {
+      console.log("Debug: User not found!")
       if (!sent) {
         res.status(401).json({
           message: "Unauthorized"
@@ -55,6 +56,7 @@ router.post("/login", async (req, res) => {
         sent = true
       }
     } else {
+      console.log("Debug: User found!")
       const correctPassword = await bcrypt.compare(req.body.password, user.password)
       if (!correctPassword && !sent) {
         res.status(401).json({
@@ -62,11 +64,13 @@ router.post("/login", async (req, res) => {
         })
         sent = true
       }
+      console.log("Debug: Login correct!")
       const token = await jwt.sign(
         { username: user.username },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
       )
+      console.log("Debug: JWT Token created!")
       res.cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
@@ -74,6 +78,7 @@ router.post("/login", async (req, res) => {
         path: '/',
         maxAge: 3600000, // 1 hour (same as token expiry)
       })
+      console.log("Debug: Cookie data created!")
       res.status(200).json({ message: "Login successful" })
     }
   } catch (err) {
