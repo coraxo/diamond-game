@@ -16,7 +16,7 @@ jobs:
       uses: cloudposse/github-action-docker-build-push@main
       with:
         file: Dockerfile.production
-        image_name: diamond-app
+        image_name: coraxo/diamond-app
         registry: registry.hub.docker.com
         organization: "${{ github.event.repository.owner.login }}"
         repository: "${{ github.event.repository.name }}"
