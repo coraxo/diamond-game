@@ -16,3 +16,7 @@ export interface CreatePlayerFormProps {
 export interface CreatePlayerFormData {
   name: string
 }
+
+export interface DiamondWidgetProps {
+  enabled: boolean
+}

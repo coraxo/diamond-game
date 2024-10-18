@@ -2,8 +2,9 @@
 import diamondIcon from '../../assets/images/diamond.svg'
 import { fetchDiamondCount } from '../../api/GameApi'
 import { useEffect, useState } from 'react'
+import { DiamondWidgetProps } from '../../types'
 
-function DiamondWidget() {
+const DiamondWidget: React.FC<DiamondWidgetProps> = ({ enabled }) => {
   const [error, setError] = useState<string>()
   const [diamonds, setDiamonds] = useState('Fetching...')
 
@@ -18,22 +19,25 @@ function DiamondWidget() {
     }
 
     getStatus()
-  }, [])
+  }, [enabled])
 
-  return (
-    <div className="diamond-widget">
-      <p>
-        { error ? `Error fetching data` :
-          (
-            <>
-              <img className="diamond-icon" src={diamondIcon} alt="Diamond" />
-              <span className="diamond-count">{diamonds}</span>
-            </>
-          )
-        }
-      </p>
-    </div>
-  )
- }
+  if (enabled) {
+    return (
+      <div className="diamond-widget">
+        <p>
+          { error ? `Error fetching data` :
+            (
+              <>
+                <img className="diamond-icon" src={diamondIcon} alt="Diamond" />
+                <span className="diamond-count">{diamonds}</span>
+              </>
+            )
+          }
+        </p>
+      </div>
+    )
+  }
+  return ''
+}
 
- export default DiamondWidget
+export default DiamondWidget

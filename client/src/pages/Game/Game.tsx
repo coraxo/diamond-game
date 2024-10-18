@@ -60,7 +60,7 @@ function Game() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Adventure game</p>
-        <DiamondWidget />
+        <DiamondWidget enabled={playerData.name != null} />
       </header>
       {playerData.name ?
       (
